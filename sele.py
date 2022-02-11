@@ -48,7 +48,10 @@ def scrap_one(id:int, sleep=True):
 
 for i in range(5):
     print("---- lala ----", "\n Work in progress...")
-    scrap_one(i+1,sleep=False )
+    scrap_one(i+1,sleep=True )
+
+driver.close()
+
 
 
 
