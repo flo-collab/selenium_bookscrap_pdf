@@ -3,15 +3,21 @@
 Uwsing M_edge
 Version 91.0.864.67 (Version officielle) (64 bits)
 """
-#christophe utilise chrome:
+import os ,time
+from msedge.selenium_tools import Edge, EdgeOptions
+from dotenv import load_dotenv
+
+load_dotenv()
+
+url = os.getenv('URL')
+print(url)
+
+# christophe utilise chrome:
 # from selenium import webdriver
 # driver = webdriver.Chrome(executable_path="C:\\chromedriver.exe")
 # # driver.maximize_window()
-# driver.get('http://51.195.220.149/book.php?id=3')
+# driver.get(url+'/book.php?id=3')
 
-import os ,time
-from re import T
-from msedge.selenium_tools import Edge, EdgeOptions
 
 options = EdgeOptions()
 options.use_chromium = True
@@ -31,31 +37,23 @@ def test_sele():
     time.sleep(5)
     driver.close()
 
-# driver.get('http://51.195.220.149/book.php?id=3')
-
-# print("---- lala ----", "\n Work in progress...")
-# target = driver.find_element_by_css_selector('a[download=""]')
-# target.click()
 
 def scrap_one(id:int, sleep=True):
     print(f'\n --- Scraping book with id = {id} ---')
-    driver.get(f'http://51.195.220.149/book.php?id={id}')
+    driver.get(url + f'/book.php?id={id}')
     target = driver.find_element_by_css_selector('a[download=""]')
     target.click()
     if sleep:
-        time.sleep(5)
+        time.sleep(3)
 
 
-for i in range(5):
+
+#stoped at i = 614 server crash or it belives it's a dos attack rerun with range(614,1165)
+
+for i in range(1165):
     print("---- lala ----", "\n Work in progress...")
-    scrap_one(i+1,sleep=True )
+    scrap_one(i+1,sleep=True)
 
-driver.close()
-
-
-
-
-
-# for i in range(1165):
-#     print("---- lala ----", "\n Work in progress...")
+# time.sleep(600)
+# driver.close()
 
